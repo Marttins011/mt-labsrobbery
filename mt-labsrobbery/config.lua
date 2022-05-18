@@ -1,5 +1,7 @@
 Config = {}
 
+Config.MinimumPolice = 2
+
 Config.PaymentMoney = 5000
 
 Config['labguards'] = {
