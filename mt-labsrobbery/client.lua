@@ -2,7 +2,12 @@ local QBCore = exports['qb-core']:GetCoreObject()
 
 ------ Eventos
 
+RegisterNetEvent('police:SetCopCount', function(amount)
+    CurrentCops = amount
+end)
+
 RegisterNetEvent('mt-labsrobbery:client:PedirMissao', function()
+    if CurrentCops >= Config.MinimumPolice then
     TriggerEvent('animations:client:EmoteCommandStart', {"wait"})
     QBCore.Functions.Progressbar('name_here', 'Talking to the boss...', 5000, false, true, {
         disableMovement = true,
@@ -21,6 +26,9 @@ RegisterNetEvent('mt-labsrobbery:client:PedirMissao', function()
             })
         SetNewWaypoint(3536.97, 3669.4, 28.12)
         ExportHackTarget()
+        else
+            QBCore.Functions.Notify('No enoght police online', 'error', 7500)
+        end
     end)
 end)
 
