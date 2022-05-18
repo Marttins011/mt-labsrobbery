@@ -26,6 +26,7 @@ RegisterNetEvent('mt-labsrobbery:client:PedirMissao', function()
             })
         SetNewWaypoint(3536.97, 3669.4, 28.12)
         ExportHackTarget()
+            end
         else
             QBCore.Functions.Notify('No enoght police online', 'error', 7500)
         end
