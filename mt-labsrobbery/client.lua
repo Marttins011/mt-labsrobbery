@@ -2,8 +2,24 @@ local QBCore = exports['qb-core']:GetCoreObject()
 
 ------ Eventos
 
-RegisterNetEvent('police:SetCopCount', function(amount)
+RegisterNetEvent('police:SetCopCount')
+AddEventHandler('police:SetCopCount', function(amount)
     CurrentCops = amount
+end)
+
+RegisterNetEvent('QBCore:Client:OnPlayerUnload')
+AddEventHandler('QBCore:Client:OnPlayerUnload', function()
+    isLoggedIn = false
+end)
+
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded')
+AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
+    isLoggedIn = true
+end)
+
+RegisterNetEvent('qb-police:SetCopCount')
+AddEventHandler('qb-police:SetCopCount', function(Amount)
+    CurrentCops = Amount
 end)
 
 RegisterNetEvent('mt-labsrobbery:client:PedirMissao', function()
