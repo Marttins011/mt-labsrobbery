@@ -2,26 +2,6 @@ local QBCore = exports['qb-core']:GetCoreObject()
 
 ------ Eventos
 
-RegisterNetEvent('police:SetCopCount')
-AddEventHandler('police:SetCopCount', function(amount)
-    CurrentCops = amount
-end)
-
-RegisterNetEvent('QBCore:Client:OnPlayerUnload')
-AddEventHandler('QBCore:Client:OnPlayerUnload', function()
-    isLoggedIn = false
-end)
-
-RegisterNetEvent('QBCore:Client:OnPlayerLoaded')
-AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
-    isLoggedIn = true
-end)
-
-RegisterNetEvent('qb-police:SetCopCount')
-AddEventHandler('qb-police:SetCopCount', function(Amount)
-    CurrentCops = Amount
-end)
-
 RegisterNetEvent('mt-labsrobbery:client:PedirMissao', function()
     TriggerEvent('animations:client:EmoteCommandStart', {"wait"})
     QBCore.Functions.Progressbar('name_here', 'Talking to the boss...', 5000, false, true, {
@@ -32,7 +12,6 @@ RegisterNetEvent('mt-labsrobbery:client:PedirMissao', function()
     }, {}, {}, {}, function()
         TriggerEvent('animations:client:EmoteCommandStart', {"c"})
         QBCore.Functions.Notify('You will recive an email with the location of the lab, the go there and start the hack! <br> Take it you will need this!', 'primary')
-        if CurrentCops >= Config.MinimumPolice then
         TriggerServerEvent('QBCore:Server:AddItem', "electronickit", 1)
         Wait(5000)
         TriggerServerEvent('qb-phone:server:sendNewMail', {
@@ -42,9 +21,6 @@ RegisterNetEvent('mt-labsrobbery:client:PedirMissao', function()
             })
         SetNewWaypoint(3536.97, 3669.4, 28.12)
         ExportHackTarget()
-        else
-            QBCore.Functions.Notify('No enoght police online', 'error', 7500)
-        end
     end)
 end)
 
