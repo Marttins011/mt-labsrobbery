@@ -19,8 +19,6 @@ RegisterNetEvent('mt-labsrobbery:client:PedirMissao', function()
             subject = 'Human Labs...',
             message = 'You recive the location, now go there and rob the informations for me and i will pay you good!',
             })
-        SetNewWaypoint(3536.97, 3669.4, 28.12)
-        ExportHackTarget()
     end)
 end)
 
@@ -118,6 +116,22 @@ CreateThread(function()
         },
         distance = 1.5
     })
+        
+    exports['qb-target']:AddBoxZone("hack-human", vector3(3536.97, 3669.4, 28.12), 1, 1, {
+        name="hack-human",
+        heading=350,
+        debugpoly = false,
+    }, {
+        options = {
+            {
+            event = "mt-labsrobbery:client:IniciarHack",
+            icon = "far fa-usb",
+            label = "Hack System",
+            item = "electronickit",
+            },
+        },
+        distance = 1.5
+    })
 end)
 
 ---- Funções
@@ -172,22 +186,4 @@ function SpawnGuards()
     SetRelationshipBetweenGroups(0, `npcguards`, `npcguards`)
     SetRelationshipBetweenGroups(5, `npcguards`, `PLAYER`)
     SetRelationshipBetweenGroups(5, `PLAYER`, `npcguards`)
-end
-
-function ExportHackTarget()
-    exports['qb-target']:AddBoxZone("hack-human", vector3(3536.97, 3669.4, 28.12), 1, 1, {
-        name="hack-human",
-        heading=350,
-        debugpoly = false,
-    }, {
-        options = {
-            {
-            event = "mt-labsrobbery:client:IniciarHack",
-            icon = "far fa-usb",
-            label = "Hack System",
-            item = "electronickit",
-            },
-        },
-        distance = 1.5
-    })
 end
